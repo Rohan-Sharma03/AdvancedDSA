@@ -151,6 +151,42 @@ public class TreapImplementaion {
         printTreap(root.right);
     }
 
+    // level order traversal of treap.
+    public static void levelOrder(TreapNode root) {
+        int height = height(root);
+        for (int i = 1; i <= height; i++) {
+            printLevel(root, i);
+            System.out.println();
+        }
+    }
+
+    private static int height(TreapNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = height(root.left);
+        int right = height(root.right);
+        if (left > right) {
+            return left + 1;
+        } else {
+            return right + 1;
+        }
+    }
+
+    private static void printLevel(TreapNode root, int level) {
+        if (root == null) {
+            return;
+        }
+        if (level == 1) {
+            System.out.print(root.key + " (p:" + root.priority + ")" + " ");
+            System.out.println();
+        } else if (level > 1) {
+            printLevel(root.left, level - 1);
+            printLevel(root.right, level - 1);
+        }
+
+    }
+
     public static void main(String[] args) {
         TreapImplementaion treap = new TreapImplementaion();
         TreapNode root = null;
@@ -159,10 +195,10 @@ public class TreapImplementaion {
             root = insert(root, x);
         }
         treap.printTreap(root);
-        treap.delete(root, 27);
+        // treap.delete(root, 27);
         System.out.println();
         System.out.println(treap.search(root, 80));
-        treap.printTreap(root);
+        treap.levelOrder(root);
 
     }
 
