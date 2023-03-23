@@ -1,5 +1,13 @@
 import java.util.Random;
 
+/**
+ * Author : Rohan Sharma
+ * Created : 16 March 2023
+ * Last Update : 23 March 2023
+ * Topic : TREAP
+ * Reference Link : https://www.techiedelight.com/implementation-treap-data-structure-cpp-java-insert-search-delete/
+ */
+
 class TreapNode {
     int key;
     int priority;
