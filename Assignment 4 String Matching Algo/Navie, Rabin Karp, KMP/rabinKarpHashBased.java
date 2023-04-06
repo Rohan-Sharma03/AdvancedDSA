@@ -1,4 +1,11 @@
-import java.util.regex.Pattern;
+
+/**
+ * Author : Rohan Sharma
+ * Created : 6 April 2023
+ * Last Update : 6 April 2023
+ * Topic : B Tree
+ * Reference Link : https://www.programiz.com/dsa/b-tree
+ */
 
 public record rabinKarpHashBased() {
     // Global Var to Store pervious hash values of substrings in given text i.e (to
