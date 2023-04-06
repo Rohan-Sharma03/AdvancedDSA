@@ -11,8 +11,7 @@ public class navieMethod {
     public static void main(String[] args) {
         // Given String for pattern matching
         String T = "abbcbabccbdab";
-
-        // Given pattern to be searched
+        // Given pattern to be searched in text
         String P = "bccbd";
         int n = T.length();
         int m = P.length();
