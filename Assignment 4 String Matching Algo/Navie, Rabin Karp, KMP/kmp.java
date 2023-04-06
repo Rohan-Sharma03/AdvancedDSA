@@ -1,3 +1,11 @@
+/**
+ * Author : Rohan Sharma
+ * Created : 6 April 2023
+ * Last Update : 6 April 2023
+ * Topic : Kmp algorithm
+ * Reference Link : https://iq.opengenus.org/prefix-table-lps/
+ */
+
 public class kmp {
     public static void main(String args[]) {
         // Given String for pattern matching
