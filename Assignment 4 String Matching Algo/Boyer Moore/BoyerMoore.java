@@ -1,8 +1,8 @@
 
 /**
  * Author : Rohan Sharma
- * Created : 6 April 2023
- * Last Update : 6 April 2023
+ * Created : 16 April 2023
+ * Last Update : 16 April 2023
  * Topic : Booyer Moore String matching Algortihm with bad character and good
  * character suffix
  * Reference Link : https://favtutor.com/blogs/boyer-moore-algorithm
