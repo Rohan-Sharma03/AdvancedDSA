@@ -9,7 +9,6 @@
  */
 
 public class BoyerMoore {
-
     private static final int ALPHABET_SIZE = 26;
 
     // Boyer-Moore string search algorithm
