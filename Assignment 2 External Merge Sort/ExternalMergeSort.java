@@ -11,12 +11,11 @@ import java.io.*;
 import java.util.*;
 
 public class ExternalMergeSort {
-
     public static void main(String[] args) throws IOException {
         String inputFile = "Assignment 2 External Merge Sort/input.txt"; // Input file name
         String outputFile = "Assignment 2 External Merge Sort/output.txt"; // Output file name
-        int bufferSize = 1024; // Buffer size for reading and sorting data
-        int numValues = 1024; // Number of values to generate in the input file
+        int bufferSize = 2000; // Buffer size for reading and sorting data
+        int numValues = 2000; // Number of values to generate in the input file
         generateInputFile(inputFile, numValues); // Generate input file with random values
         externalMergeSort(inputFile, outputFile, bufferSize); // Perform external merge sort
         System.out.println("Sorting complete. Sorted data written to " + outputFile);
@@ -47,7 +46,7 @@ public class ExternalMergeSort {
             }
         }
 
-        // Merge sorted chunks
+        // Perform merge step with a priority queue
         PriorityQueue<BufferedReader> minHeap = new PriorityQueue<>((br1, br2) -> {
             // Comparator to compare values from different buffered readers
             try {
@@ -58,13 +57,14 @@ public class ExternalMergeSort {
             }
         });
 
-        List<BufferedWriter> tempFiles = new ArrayList<>(); // List to store temporary output files
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile))) {
+            List<BufferedReader> readers = new ArrayList<>(); // List to store buffered readers for each chunk
             for (File chunk : chunks) {
                 BufferedReader br = new BufferedReader(new FileReader(chunk)); // Create buffered reader for each chunk
                 minHeap.offer(br); // Add the buffered reader to the priority queue
-                tempFiles.add(bw); // Add the buffered writer for the output file to the list of temporary files
+                readers.add(br); // Add the buffered reader to the list of readers
             }
+
             while (!minHeap.isEmpty()) {
                 BufferedReader br = minHeap.poll(); // Get the smallest value from the priority queue
                 String line = br.readLine();
@@ -76,14 +76,17 @@ public class ExternalMergeSort {
                     br.close(); // Close the buffered reader if it has no more values
                 }
             }
+
+            // Clean up temporary chunk files
+            for (File chunk : chunks) {
+                if (!chunk.delete()) {
+                    System.err.println("Failed to delete temporary chunk file: " + chunk.getName());
+                }
+
+            }
+
         }
 
-        // Clean up temporary chunk files
-        for (File chunk : chunks) {
-            if (!chunk.delete()) {
-                System.err.println("Failed to delete temporary chunk file: " + chunk.getName());
-            }
-        }
     }
 
     public static File writeChunkToFile(List<Integer> chunk) throws IOException {
