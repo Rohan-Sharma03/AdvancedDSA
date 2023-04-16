@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Author : Rohan Sharma
  * Created : 6 April 2023
@@ -9,9 +11,9 @@
 public class kmp {
     public static void main(String args[]) {
         // Given String for pattern matching
-        String T = "ababcabcabababd";
+        String T = "abcdefgh";
         // Given pattern to be searched
-        String P = "ababd";
+        String P = "def";
         // String and pattern length
         int slen = T.length();
         int plen = P.length();
@@ -65,6 +67,7 @@ public class kmp {
                 }
             }
         }
+        System.out.println(Arrays.toString(piTable));
         if (found) {
             System.out.println("Pattern found at index " + (i - j));
         } else {
